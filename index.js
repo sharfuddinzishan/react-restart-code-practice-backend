@@ -46,7 +46,6 @@ const herocycle = async () =>
         // Update Single Info
         app.put('/info', async (req, res) => {
             const getSingleInfo = req.body
-            console.log('Body ', getSingleInfo.id)
             if (getSingleInfo === 'undefined') {
                 res.send({ status: 401 })
             }
