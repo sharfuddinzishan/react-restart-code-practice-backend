@@ -1,5 +1,3 @@
-const { MongoClient } = require('mongodb');
-const ObjectId = require('mongodb').ObjectId;
 // require('dotenv').config();
 const express = require('express');
 const app = express();
@@ -10,15 +8,18 @@ const PORT = process.env.PORT || 4000;
 app.use(express.json());
 app.use(cors());
 
+const ObjectId = require('mongodb').ObjectId;
+const { MongoClient, ServerApiVersion } = require('mongodb');
 //const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.cu6sghd.mongodb.net/?retryWrites=true&w=majority`;
-const uri = `mongodb+srv://practicezishan:PracticeZishan@cluster0.cu6sghd.mongodb.net/?retryWrites=true&w=majority`;
-const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+const uri = "mongodb+srv://practicezishan:PracticeZishan@cluster0.cu6sghd.mongodb.net/?retryWrites=true&w=majority";
+const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
 
 
 const herocycle = async () => 
 {
     try {
         await client.connect();
+        console.log('Connected')
         const usersCollection = client.db('practicedb').collection('info');
 
         // Check Server is Ok or Not
